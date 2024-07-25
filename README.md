@@ -18,7 +18,9 @@ DB_PASSWORD=password
 
 3. run  ```npm run dev``` on backend to spin up the backend server
 
-4. run ```npm run build && npm start``` on frontend
+4. create a .env in frontend with a SECURITY_SECRET_KEY which matches the one in the backend's config.json
+
+5. run ```npm run build && npm start``` on frontend
 
 
 Now, you will be able to create a user by running the createUser graphQL query. To update the user to active and actually access the dashboard, run a SQL command in the postgres instance to update the active field to true once you have create a user.

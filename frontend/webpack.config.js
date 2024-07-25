@@ -1,13 +1,13 @@
 const nodeExternals = require("webpack-node-externals");
 const path = require("path");
 const { ProvidePlugin } = require("webpack");
+const CopyPlugin = require('copy-webpack-plugin');
+
 const rules = [{
     test: /\.(tsx|ts)$/,
     use: 'ts-loader',
     exclude: /node_modules/
 }];
-
-const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const client = {
     mode: "production",
@@ -23,7 +23,9 @@ const client = {
           crypto: require.resolve('crypto-browserify'),
           buffer: require.resolve('buffer/'),
           stream: require.resolve('stream-browserify'),
-          vm: require.resolve("vm-browserify")
+          vm: require.resolve("vm-browserify"),
+          os: require.resolve("os-browserify/browser"),
+          path: require.resolve("path-browserify")
         }
     },
     plugins: [
@@ -51,7 +53,14 @@ const server = {
     externals: [nodeExternals()],
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"]
-    }
+    },
+    plugins: [
+        new CopyPlugin({
+          patterns: [
+            { from: '.env', to: '.' }
+          ],
+        }),
+    ]
 };
 
 module.exports = [client, server];
