@@ -34,7 +34,7 @@ const UserProvider: FC<IProps> = ({page = "", children}) => {
         if (!dataUser) return;
 
         if (!dataUser.getUser.id && page != "login") {
-            redirectTo("/login?redirectTo=/dashboard")
+            redirectTo(`/login?redirectTo=/${page}`)
         } else {
             setConnectedUser(dataUser.getUser);
         }

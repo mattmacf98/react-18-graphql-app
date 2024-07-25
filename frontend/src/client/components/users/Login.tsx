@@ -32,7 +32,6 @@ const Login: FC<IProps> = ({login, currentUrl}) => {
             setInvalidLogin(true)
             setErrorMessage(response.message);
         } else {
-            console.log(currentUrl);
             navigate(currentUrl || "/")
         }
     }

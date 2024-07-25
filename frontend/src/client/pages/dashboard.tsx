@@ -2,7 +2,7 @@ import DashboardLayout from "../components/dashboard/DashboardLayout";
 import UserProvider from "../contexts/user";
 
 const Page = () => (
-    <UserProvider>
+    <UserProvider page="dashboard">
         <DashboardLayout/>
     </UserProvider>
 )
