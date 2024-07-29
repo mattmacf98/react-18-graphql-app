@@ -7,6 +7,7 @@ export default () => `
     <body>
       <div id="root"></div>
       <script src="/bundle.js"></script>
+       <script src="/vendor.js"></script>
     </body>
   </
 `

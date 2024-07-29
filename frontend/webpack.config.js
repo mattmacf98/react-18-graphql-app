@@ -11,10 +11,24 @@ const rules = [{
 
 const client = {
     mode: "production",
-    entry: "./src/client/client.tsx",
+    entry: {
+        bundle: "./src/client/client.tsx"
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                default: false,
+                commons: {
+                    test: /node_modules/,
+                    name: "vendor",
+                    chunks: "all"
+                }
+            }
+        }
+    },
     output: {
         path: path.resolve(__dirname, './dist/public'),
-        filename: 'bundle.js',
+        filename: '[name].js',
         publicPath: "/"
     },
     resolve: {
